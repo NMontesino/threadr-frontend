@@ -7,7 +7,7 @@ function App()
 {
   return(
 
-    <div className="App">
+    <div className="App" style={{'width': '100%', 'height': '100vh', 'border': '1px solid black', 'padding': '16px'}}>
 
       <Sidebar className="sidebar" />
       <Body className="app-body" />
