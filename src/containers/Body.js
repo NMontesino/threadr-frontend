@@ -9,9 +9,9 @@ class Body extends Component
     {
         return(
             <div>
-                {
-                    true ? <ThreadForm /> : <ThreadContainer />
-                }
+                <ThreadContainer posts={this.props.posts} value={this.props.value} handleAddNewPost={this.props.handleAddNewPost}/>
+                <ThreadForm />
+                
             </div>
         )
     }

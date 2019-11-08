@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 class PostComponent extends Component
 {
 
-    render()
-    {
+    render(){
+    console.log(this.props)
         return(
             <div>
                 Fuuuuck
