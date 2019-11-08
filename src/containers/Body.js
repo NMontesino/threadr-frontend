@@ -36,6 +36,13 @@ class Body extends Component
                 </div>
             )
         }
+        return(
+            <div>
+                <ThreadContainer posts={this.props.posts} value={this.props.value} handleAddNewPost={this.props.handleAddNewPost}/>
+                <ThreadForm />
+                
+            </div>
+        )
     }
 
 }
