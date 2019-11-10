@@ -3,23 +3,63 @@ import React, { Component } from 'react'
 class Login extends Component
 {
 
-    handleUsernameSubmit = (e) => 
+    state = 
     {
-        e.preventDefault()
-        this.props.logIn(e.target.children[1].value)
+        username: ''
+    }
+
+    handleChange = (event) => 
+    {
+        console.log(this.state)
+
+        this.setState(
+        {
+            [event.target.name]: event.target.value
+        })
+    }
+
+    handleSubmit = (event) => 
+    {
+
+        event.preventDefault()
+
+        fetch("http://localhost:3000/login", 
+        {
+            method: "POST",
+            headers: 
+            {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(
+            {
+                username: this.state.username
+            })
+        })
+        .then(res => res.json())
+        .then((user) =>
+        {
+            this.props.handleLogin(user)
+        })
+
     }
 
     render()
     {
+    
         return(
 
-            <form style={{'width': '250px', 'height': '120px', 'display': 'flex', 'flexDirection': 'column', 'padding': '12px'}} onSubmit={ (e) => this.handleUsernameSubmit(e) } >
-                <p style={{'margin': '4px'}}>Enter your username...</p>
-                <input style={{'margin': '4px'}} type="text" />
-                <input style={{'margin': '4px'}} type="submit" />
+            <form onSubmit={ this.handleSubmit }>
+
+                <label for="username">Enter a Username</label>
+                <input type="text" name="username" placeholder='Write Something' onChange={this.handleChange}/>
+
+                <input type="submit" value="Submit" />
+                
             </form>
 
         )
+
     }
 
 }

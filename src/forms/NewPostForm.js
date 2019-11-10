@@ -1,40 +1,51 @@
 import React, { Component } from 'react'
 
-class NewPostForm extends Component{
-    state = {
+class NewPostForm extends Component
+{
+
+    state = 
+    {
         title: '',
         content: ''
     }
 
-    handleChange = (event) => {
+    handleChange = (event) => 
+    {
         console.log(this.state)
-        this.setState({
+
+        this.setState(
+        {
             [event.target.name]: event.target.value
         })
-      }
+    }
 
-      handleSubmit = (event) => {
+    handleSubmit = (event) => 
+    {
         event.preventDefault()
         this.props.handleAddNewPost(this.state)
-      }
+    }
 
-    render(){
-    console.log(this.state.value)
+    render()
+    {
+
+        console.log(this.state.value)
     
         return(
+
             <form onSubmit={this.handleSubmit}>
-                <label>
-                    Title
-                    <input type="text" name="title" placeholder='Write Something' onChange={this.handleChange}/>
-                </label>
-                <label>
-                    Content
-                    <textarea type="text" name="content" placeholder='Write Something' onChange={this.handleChange}/>
-                </label>
+
+                <label for="title">Title</label>   
+                <input type="text" name="title" placeholder='Write Something' onChange={this.handleChange}/>
+                
+                <label for="content">Content</label>
+                <textarea type="text" name="content" placeholder='Write Something' onChange={this.handleChange}/>
 
                 <input type="submit" value="Submit" />
+
             </form>
+
         )
+
     }
 
 }
