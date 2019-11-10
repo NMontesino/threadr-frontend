@@ -8,7 +8,7 @@ class Body extends Component
 
     loggedIn = () =>
     {
-        return false
+        return true
     }
 
     logIn = (name) =>
@@ -18,31 +18,44 @@ class Body extends Component
 
     render()
     {
-        if(this.loggedIn())
-        {
-            return(
+        return(
+            this.loggedIn() ?
                 <div>
-                    {
-                        true ? <ThreadForm /> : <ThreadContainer />
-                    }
-                </div>
-            )
-        }
-        else
-        {
-            return(
+                <ThreadForm handleAddNewThread={this.props.handleAddNewThread}/>
+                <ThreadContainer posts={this.props.posts} value={this.props.value} handleAddNewPost={this.props.handleAddNewPost}/>
+                 </div>
+            :
+            
                 <div>
                     <Login logIn={ this.logIn } />
                 </div>
-            )
-        }
-        return(
-            <div>
-                <ThreadContainer posts={this.props.posts} value={this.props.value} handleAddNewPost={this.props.handleAddNewPost}/>
-                <ThreadForm />
-                
-            </div>
+            
         )
+
+        // {
+        //     return(
+        //         <div>
+        //             {
+        //                 true ? <ThreadForm /> : <ThreadContainer />
+        //             }
+        //         </div>
+        //     )
+        // }
+        // else
+        // {
+        //     return(
+        //         <div>
+        //             <Login logIn={ this.logIn } />
+        //         </div>
+        //     )
+        // }
+        // return(
+        //     <div>
+        //         <ThreadContainer posts={this.props.posts} value={this.props.value} handleAddNewPost={this.props.handleAddNewPost}/>
+        //         <ThreadForm />
+                
+        //     </div>
+        // )
     }
 
 }
