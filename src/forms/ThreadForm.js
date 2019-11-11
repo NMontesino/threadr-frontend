@@ -10,7 +10,7 @@ class ThreadForm extends Component{
 
     handleChange = (event) => 
     {
-        console.log(this.state)
+        // console.log(this.state)
 
         this.setState(
         {
@@ -23,7 +23,7 @@ class ThreadForm extends Component{
 
         event.preventDefault()
 
-        fetch("http://localhost:3000/channels", 
+        fetch('http://localhost:3000/channels', 
         {
             method: "POST",
             headers: 
@@ -38,9 +38,10 @@ class ThreadForm extends Component{
             })
         })
         .then(res => res.json())
-        .then(() =>
+        .then((thread) =>
         {
-            this.props.handleAddNewThread(this.state)
+            console.log(thread)
+            this.props.handleAddNewThread(thread)
         })
 
     }
@@ -50,12 +51,14 @@ class ThreadForm extends Component{
     
         return(
 
-            <form onSubmit={ this.handleSubmit }>
+            <form onSubmit={ this.handleSubmit } style={{'display': 'flex', 'flexDirection': 'column', 'width': '200px', 'height': '200px'}}>
 
-                <label for="title">Title</label>
+                <h2>Create Thread</h2>
+
+                <label htmlFor="title">Title</label>
                 <input type="text" name="title" placeholder='Write Something' onChange={this.handleChange}/>
-                
-                <label for="description">Description</label>
+            
+                <label htmlFor="description">Description</label>
                 <textarea type="text" name="description" placeholder='Write Something' onChange={this.handleChange}/>
 
                 <input type="submit" value="Submit" />

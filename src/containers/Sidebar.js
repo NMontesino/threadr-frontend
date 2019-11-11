@@ -9,11 +9,9 @@ class Sidebar extends Component
     {
         return(
             <div>
-                <UserComponent />
-                <p>Threads You Follow</p>
-                <ThreadList />
-                <p>Note Space</p>
-                <ThreadList />
+                <UserComponent user={ this.props.user } />
+                <p>All Threads</p>
+                <ThreadList selectThread={ this.props.selectThread } threads={ this.props.threads } />
             </div>
         )
     }

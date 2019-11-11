@@ -6,9 +6,17 @@ class ThreadList extends Component
 
     render()
     {
+        let threads = []
+        if(this.props.threads)
+        {
+            threads = this.props.threads.map((thread) => 
+            {
+                return <ThreadComponent selectThread={ this.props.selectThread } thread={ thread } />
+            })
+        }
         return(
             <div>
-                <ThreadComponent />
+                { threads }
             </div>
         )
     }

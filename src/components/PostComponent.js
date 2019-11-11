@@ -3,11 +3,13 @@ import React, { Component } from 'react'
 class PostComponent extends Component
 {
 
-    render(){
-    console.log(this.props)
+    render()
+    {
+        // console.log(this.props)
         return(
             <div>
-                Fuuuuck
+                <p>{this.props.post.title}</p>
+                <p>{this.props.post.body}</p>
             </div>
         )
     }

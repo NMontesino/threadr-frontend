@@ -10,8 +10,6 @@ class Login extends Component
 
     handleChange = (event) => 
     {
-        console.log(this.state)
-
         this.setState(
         {
             [event.target.name]: event.target.value
@@ -51,8 +49,8 @@ class Login extends Component
 
             <form onSubmit={ this.handleSubmit }>
 
-                <label for="username">Enter a Username</label>
-                <input type="text" name="username" placeholder='Write Something' onChange={this.handleChange}/>
+                <label htmlFor="username">Enter a Username</label>
+                <input type="text" name="username" placeholder='Write Something' onChange={ this.handleChange }/>
 
                 <input type="submit" value="Submit" />
                 

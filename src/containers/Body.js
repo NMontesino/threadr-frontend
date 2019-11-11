@@ -14,7 +14,7 @@ class Body extends Component
             ?
                 <div>
                     <ThreadForm handleAddNewThread={this.props.handleAddNewThread}/>
-                    <ThreadContainer posts={this.props.posts} value={this.props.value} handleAddNewPost={this.props.handleAddNewPost}/>
+                    <ThreadContainer posts={this.props.posts} value={this.props.value} handleAddNewPost={this.props.handleAddNewPost} currentThread={ this.props.currentThread } user={ this.props.user } />
                 </div>
             :
                 <div>

@@ -5,7 +5,9 @@ class UserComponent extends Component
 
     render()
     {
-        return(<p>Fuck</p>)
+        return(
+            <p>Welcome <span style={{'fontWeight': 'bold'}}>{ this.props.user.username }</span></p>
+        )
     }
 
 }
