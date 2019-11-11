@@ -11,7 +11,7 @@ class Sidebar extends Component
             <div>
                 <UserComponent user={ this.props.user } />
                 <p>All Threads</p>
-                <ThreadList selectThread={ this.props.selectThread } threads={ this.props.threads } />
+                <ThreadList deleteThread={this.props.deleteThread} selectThread={ this.props.selectThread } threads={ this.props.threads } />
             </div>
         )
     }

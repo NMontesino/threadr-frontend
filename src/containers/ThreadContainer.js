@@ -9,7 +9,7 @@ class ThreadContainer extends Component
     {
         const posts = this.props.posts.map((post) => 
         {
-            return <PostComponent post={post}/>
+            return <PostComponent post={post} deletePost={this.props.deletePost} editPost={this.props.editPost} />
         })
         return(
             <div>

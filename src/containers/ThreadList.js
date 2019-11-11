@@ -11,7 +11,7 @@ class ThreadList extends Component
         {
             threads = this.props.threads.map((thread) => 
             {
-                return <ThreadComponent selectThread={ this.props.selectThread } thread={ thread } />
+                return <ThreadComponent deleteThread={this.props.deleteThread} selectThread={ this.props.selectThread } thread={ thread } />
             })
         }
         return(
