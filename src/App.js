@@ -1,6 +1,7 @@
 import React from 'react'
 import './App.css'
 import Body from './containers/Body'
+import Sidebar from './containers/Sidebar'
 
 class App extends React.Component 
 {
