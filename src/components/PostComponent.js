@@ -7,7 +7,7 @@ class PostComponent extends Component
     console.log(this.props)
         return(
             <div>
-                Fuuuuck
+                This is the render for the Post Component 
             </div>
         )
     }

@@ -10,7 +10,7 @@ class ThreadContainer extends Component
         return(
             <div>
                 <PostComponent post={this.props.posts}/>
-                <NewPostForm value={this.props.value} handleAddNewPost={this.props.handleAddNewPost}/>
+                <NewPostForm value={this.props.value} handleAddNewPost={this.props.handleAddNewPost} user={this.props.user} currentThread={this.props.currentThread}/>
             </div>
         )
     }

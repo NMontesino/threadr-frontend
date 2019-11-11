@@ -1,6 +1,5 @@
 import React from 'react'
 import './App.css'
-import Sidebar from './containers/Sidebar'
 import Body from './containers/Body'
 
 class App extends React.Component {
@@ -8,8 +7,9 @@ class App extends React.Component {
   state = {
     posts: [],
     threads: [],
-    user: {},
-    isLoggedIn: false
+    user: null,
+    isLoggedIn: false,
+    currentThread: null
   }
   
   handleAddNewPost = (newPostObj) => {
@@ -20,9 +20,26 @@ class App extends React.Component {
 
   handleAddNewThread = (newThreadObj) => {
     this.setState({
-      threads: [...this.state.threads, newThreadObj]
+      threads: [...this.state.threads, newThreadObj],
+      currentThread: newThreadObj
     })
+
   }
+
+  handleLogin = (userObj) => {
+    console.log(userObj)
+    this.setState({
+      user: userObj
+    })
+  
+  
+  }
+
+  handleLoginToggle = () => {
+    this.setState({
+      isLoggedIn: !this.state.isLoggedIn
+    })
+}
   
   
   
@@ -33,8 +50,7 @@ class App extends React.Component {
   
       <div className="App" style={{'width': '100%', 'height': '100vh', 'border': '1px solid black', 'padding': '16px'}}>
   
-        <Sidebar className="sidebar" />
-        <Body className="app-body" posts={this.state.posts} value={this.state.value} handleAddNewPost={this.handleAddNewPost} handleAddNewThread={this.handleAddNewThread} />
+        <Body className="app-body" isLoggedIn={this.state.isLoggedIn} posts={this.state.posts} value={this.state.value} handleAddNewPost={this.handleAddNewPost} handleAddNewThread={this.handleAddNewThread} handleLogin={this.handleLogin} handleLoginToggle={this.handleLoginToggle} user={this.state.user} currentThread={this.state.currentThread}/>
   
       </div>
   

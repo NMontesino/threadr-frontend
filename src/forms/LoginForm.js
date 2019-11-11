@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
 
-class ThreadForm extends Component{
-
+class LoginForm extends Component
+{
     state = {
-        title: '',
-        description: '',
-        id: null 
+        username: '',
+        isLoggedIn: this.props.login 
     }
 
     handleChange = (event) => {
-        console.log(this.state)
         this.setState({
             [event.target.name]: event.target.value
         })
@@ -18,19 +16,26 @@ class ThreadForm extends Component{
       handleSubmit = (event) => {
         event.preventDefault()
 
-        fetch("http://localhost:3000/channels", {
+        fetch("http://localhost:3000/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
             body: JSON.stringify({
-                title: this.state.title,
-                description: this.state.description
+                username: this.state.username
             })
         })
         .then(res => res.json())
-        .then(thread => this.props.handleAddNewThread(thread))
+        .then(user => {
+            this.setState({
+                isLoggedIn: !this.state.isLoggedIn
+            })
+
+            this.props.handleLogin(user)
+            this.props.handleLoginToggle()
+        }
+        )
       }
 
     render(){
@@ -38,12 +43,8 @@ class ThreadForm extends Component{
         return(
             <form onSubmit={this.handleSubmit}>
                 <label>
-                    Title
-                    <input type="text" name="title" placeholder='Write Something' onChange={this.handleChange}/>
-                </label>
-                <label>
-                    Description
-                    <textarea type="text" name="description" placeholder='Write Something' onChange={this.handleChange}/>
+                    Enter Name 
+                    <input type="text" name="username" placeholder='Write Something' onChange={this.handleChange}/>
                 </label>
 
                 <input type="submit" value="Submit" />
@@ -53,4 +54,4 @@ class ThreadForm extends Component{
 
 }
 
-export default ThreadForm
+export default LoginForm

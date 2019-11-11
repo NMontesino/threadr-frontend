@@ -5,7 +5,7 @@ class UserComponent extends Component
 
     render()
     {
-        return(<p>Fuck</p>)
+        return(<p>render for user component</p>)
     }
 
 }

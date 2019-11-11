@@ -6,7 +6,7 @@ class ThreadComponent extends Component
     render()
     {
         return(
-            <div>Fuck</div>
+            <div>render for thread component </div>
         )
     }
 

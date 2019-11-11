@@ -1,61 +1,29 @@
 import React, { Component } from 'react'
 import ThreadContainer from './ThreadContainer'
 import ThreadForm from '../forms/ThreadForm'
-import Login from '../components/Login'
+import LoginForm from '../forms/LoginForm'
+import Sidebar from './Sidebar'
 
 class Body extends Component
 {
 
-    loggedIn = () =>
-    {
-        return true
-    }
-
-    logIn = (name) =>
-    {
-        console.log(name)
-    }
-
-    render()
+    render() 
     {
         return(
-            this.loggedIn() ?
+            this.props.isLoggedIn ?
                 <div>
+                <Sidebar className="sidebar" />
                 <ThreadForm handleAddNewThread={this.props.handleAddNewThread}/>
-                <ThreadContainer posts={this.props.posts} value={this.props.value} handleAddNewPost={this.props.handleAddNewPost}/>
+                <ThreadContainer posts={this.props.posts} value={this.props.value} handleAddNewPost={this.props.handleAddNewPost} user={this.props.user} currentThread={this.props.currentThread}/>
                  </div>
             :
             
                 <div>
-                    <Login logIn={ this.logIn } />
+                    <LoginForm logIn={this.login} handleLogin={ this.props.handleLogin } handleLoginToggle={this.props.handleLoginToggle} />
                 </div>
             
         )
 
-        // {
-        //     return(
-        //         <div>
-        //             {
-        //                 true ? <ThreadForm /> : <ThreadContainer />
-        //             }
-        //         </div>
-        //     )
-        // }
-        // else
-        // {
-        //     return(
-        //         <div>
-        //             <Login logIn={ this.logIn } />
-        //         </div>
-        //     )
-        // }
-        // return(
-        //     <div>
-        //         <ThreadContainer posts={this.props.posts} value={this.props.value} handleAddNewPost={this.props.handleAddNewPost}/>
-        //         <ThreadForm />
-                
-        //     </div>
-        // )
     }
 
 }
