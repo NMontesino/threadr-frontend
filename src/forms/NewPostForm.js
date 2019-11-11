@@ -22,36 +22,28 @@ class NewPostForm extends Component
     handleSubmit = (event) => 
     {
         event.preventDefault()
-        const threadId = this.props.currentThread.id
-        fetch('http://localhost:3000/posts', 
-        {
+
+        fetch("http://localhost:3000/posts", {
             method: "POST",
-            headers:
-            {
+            headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
             },
-            body: JSON.stringify(
-            {
+            body: JSON.stringify({
                 title: this.state.title,
                 body: this.state.content,
                 user_id: this.props.user.id,
-                channel_id: threadId
+                channel_id: this.props.currentThread.id
             })
         })
         .then(res => res.json())
-        .then((post) => 
-        {
-            console.log(post)
-            this.props.handleAddNewPost(post)
-        })
-    }
+        .then(post => this.props.handleAddNewPost(post))
+        
+      }
 
-    render()
-    {
 
-        // console.log(this.state.value)
-    
+    render(){
+
         return(
 
             <form onSubmit={this.handleSubmit} style={{'display': 'flex', 'flexDirection': 'column', 'width': '200px', 'height': '200px'}}>

@@ -1,6 +1,5 @@
 import React from 'react'
 import './App.css'
-import Sidebar from './containers/Sidebar'
 import Body from './containers/Body'
 
 class App extends React.Component 
@@ -156,7 +155,23 @@ class App extends React.Component
       threads: newThreadArr,
       currentThread: null
     })
+
   }
+
+  handleLogin = (userObj) => {
+    console.log(userObj)
+    this.setState({
+      user: userObj
+    })
+  
+  
+  }
+
+  handleLoginToggle = () => {
+    this.setState({
+      isLoggedIn: !this.state.isLoggedIn
+    })
+}
   
   render()
   {

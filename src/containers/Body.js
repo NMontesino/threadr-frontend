@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import ThreadContainer from './ThreadContainer'
 import ThreadForm from '../forms/ThreadForm'
-import Login from '../components/Login'
+import LoginForm from '../forms/LoginForm'
+
 
 class Body extends Component
 {
@@ -18,7 +19,7 @@ class Body extends Component
                 </div>
             :
                 <div>
-                    <Login handleLogin={ this.props.handleLogin } />
+                    <LoginForm logIn={this.login} handleLogin={ this.props.handleLogin } handleLoginToggle={this.props.handleLoginToggle} />
                 </div>
  
         )

@@ -5,7 +5,8 @@ class ThreadForm extends Component{
     state = 
     {
         title: '',
-        description: ''
+        description: '',
+        id: null 
     }
 
     handleChange = (event) => 
@@ -38,13 +39,8 @@ class ThreadForm extends Component{
             })
         })
         .then(res => res.json())
-        .then((thread) =>
-        {
-            console.log(thread)
-            this.props.handleAddNewThread(thread)
-        })
-
-    }
+        .then(thread => this.props.handleAddNewThread(thread))
+      }
 
     render()
     {
