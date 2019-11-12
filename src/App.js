@@ -152,9 +152,23 @@ class App extends React.Component
 
             <Switch>
 
-            <Route exact path="/" render={ () => <Body className="app-body" posts={this.state.posts} value={this.state.value} isLoggedIn={ this.state.isLoggedIn } handleLogin={ this.handleLogin } handleAddNewPost={this.handleAddNewPost} deletePost={this.deletePost} editPost={this.editPost} user={ this.state.user } currentThread={ this.state.currentThread } handleAddNewThread={this.handleAddNewThread} handleLoginToggle={this.handleLoginToggle} />} />
+            <Route exact path="/" render={ () => 
+              <Body className="app-body" 
+              posts={this.state.posts} 
+              value={this.state.value} 
+              isLoggedIn={ this.state.isLoggedIn } 
+              handleLogin={ this.handleLogin } 
+              handleAddNewPost={this.handleAddNewPost} 
+              deletePost={this.deletePost} 
+              editPost={this.editPost} 
+              user={ this.state.user } 
+              currentThread={ this.state.currentThread } 
+              handleAddNewThread={this.handleAddNewThread} 
+              handleLoginToggle={this.handleLoginToggle} />} />
 
-            <Route exact path="/login" render= {() => <LoginForm handleLogin={ this.handleLogin } handleLoginToggle={this.handleLoginToggle}/> }/>
+            <Route exact path="/login" render= {() => 
+              <LoginForm handleLogin={ this.handleLogin } 
+              handleLoginToggle={this.handleLoginToggle}/> }/>
 
             <Route component={NotFound} />
 
