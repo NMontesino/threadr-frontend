@@ -1,30 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import LoginForm from './forms/LoginForm';
-import NotFound from './components/notFound'
+
 
 const routing = (
     <Router>
-        <div>
-            <ul>
-                <li>
-                    <Link to="/">Home</Link>
-                </li>
-
-                <li>
-                    <Link to="/login">Login</Link>
-                </li>
-            </ul>
-            <Switch>
-            <Route exact path="/" component={App} />
-            <Route exact path="/login" component={LoginForm} />
-            <Route component={NotFound} />
-            </Switch>
-        </div>
+        <App />
     </Router>
 )
 

@@ -2,6 +2,10 @@ import React from 'react'
 import './App.css'
 import Body from './containers/Body'
 import Sidebar from './containers/Sidebar'
+import { Route, Link, Switch } from 'react-router-dom'
+import LoginForm from './forms/LoginForm';
+import NotFound from './components/notFound'
+
 
 class App extends React.Component 
 {
@@ -51,58 +55,7 @@ class App extends React.Component
   handleAddNewPost = (newPostObj) => 
   {
 
-    // fetch(`http://localhost:3000/users/${this.state.user.id}`, 
-    // {
-    //   method: "PATCH",
-    //   headers:
-    //   {
-    //     "Content-Type": "application/json",
-    //     "Accept": "application/json"
-    //   },
-    //   body: JSON.stringify(
-    //   {
-    //     posts: [...this.state.user.posts, newPostObj]
-    //   })
-    // })
-    // .then(res => res.json())
-    // .then((user) => 
-    // {
-    //   this.setState(
-    //   {
-    //     user: user
-    //   })
-    // })
-
-    // fetch(`http://localhost:3000/threads/${this.state.currentThread.id}`, 
-    // {
-    //   method: "PATCH",
-    //   headers:
-    //   {
-    //     "Content-Type": "application/json",
-    //     "Accept": "application/json"
-    //   },
-    //   body: JSON.stringify(
-    //   {
-    //     posts: [...this.state.currentThread.posts, newPostObj]
-    //   })
-    // })
-    // .then(res => res.json())
-    // .then((thread) => 
-    // {
-
-    //   const newThreadArr = this.state.threads.filter((index) => 
-    //   {
-    //     return this.state.threads[index] === this.state.currentThread
-    //   })
-    //   .push(thread)
-
-    //   this.setState(
-    //   {
-    //     threads: [...newThreadArr],
-    //     currentThread: thread
-    //   })
-
-    // })
+   
 
     this.setState(
     {
@@ -184,8 +137,30 @@ class App extends React.Component
       <div className="App" style={{'width': '100%', 'height': '100vh', 'padding': '16px'}}>
   
         { this.state.isLoggedIn ? <Sidebar className="sidebar" user={ this.state.user } selectThread={ this.selectThread } threads={ this.state.threads } deleteThread={ this.deleteThread } /> : null }
+
+        <div>
+            <ul>
+                <li>
+                    <Link to="/">Home</Link>
+                </li>
+
+                <li>
+                    <Link to="/login">Login</Link>
+                </li>
+            </ul>
+            </div>
+
+            <Switch>
+
+            <Route exact path="/" render={ () => <Body className="app-body" posts={this.state.posts} value={this.state.value} isLoggedIn={ this.state.isLoggedIn } handleLogin={ this.handleLogin } handleAddNewPost={this.handleAddNewPost} deletePost={this.deletePost} editPost={this.editPost} user={ this.state.user } currentThread={ this.state.currentThread } handleAddNewThread={this.handleAddNewThread} handleLoginToggle={this.handleLoginToggle} />} />
+
+            <Route exact path="/login" render= {() => <LoginForm handleLogin={ this.handleLogin } handleLoginToggle={this.handleLoginToggle}/> }/>
+
+            <Route component={NotFound} />
+
+            </Switch>
+
         
-        <Body className="app-body" posts={this.state.posts} value={this.state.value} isLoggedIn={ this.state.isLoggedIn } handleLogin={ this.handleLogin } handleAddNewPost={this.handleAddNewPost} deletePost={this.deletePost} editPost={this.editPost} user={ this.state.user } currentThread={ this.state.currentThread } handleAddNewThread={this.handleAddNewThread} handleLoginToggle={this.handleLoginToggle} />
   
       </div>
   
