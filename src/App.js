@@ -184,7 +184,8 @@ class App extends React.Component
       <div className="App" style={{'width': '100%', 'height': '100vh', 'padding': '16px'}}>
   
         { this.state.isLoggedIn ? <Sidebar className="sidebar" user={ this.state.user } selectThread={ this.selectThread } threads={ this.state.threads } deleteThread={ this.deleteThread } /> : null }
-        <Body className="app-body" posts={this.state.posts} value={this.state.value} isLoggedIn={ this.state.isLoggedIn } handleLogin={ this.handleLogin } handleAddNewPost={this.handleAddNewPost} deletePost={this.deletePost} editPost={this.editPost} user={ this.state.user } currentThread={ this.state.currentThread } handleAddNewThread={this.handleAddNewThread} />
+        
+        <Body className="app-body" posts={this.state.posts} value={this.state.value} isLoggedIn={ this.state.isLoggedIn } handleLogin={ this.handleLogin } handleAddNewPost={this.handleAddNewPost} deletePost={this.deletePost} editPost={this.editPost} user={ this.state.user } currentThread={ this.state.currentThread } handleAddNewThread={this.handleAddNewThread} handleLoginToggle={this.handleLoginToggle} />
   
       </div>
   

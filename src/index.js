@@ -21,7 +21,7 @@ const routing = (
             </ul>
             <Switch>
             <Route exact path="/" component={App} />
-            <Route path="/login" component={LoginForm} />
+            <Route exact path="/login" component={LoginForm} />
             <Route component={NotFound} />
             </Switch>
         </div>

@@ -31,7 +31,7 @@ class LoginForm extends Component
             this.setState({
                 isLoggedIn: !this.state.isLoggedIn
             })
-
+            
             this.props.handleLogin(user)
             this.props.handleLoginToggle()
         }

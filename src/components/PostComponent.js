@@ -5,8 +5,8 @@ class PostComponent extends Component
     state = 
     {
         editing: false,
-        title: '',
-        body: ''
+        title: this.props.post.title,
+        body: this.props.post.body
     }
 
     handleChange = (event) => 
@@ -93,10 +93,10 @@ class PostComponent extends Component
                         <h2>Edit Post</h2>
 
                         <label htmlFor="title">Title</label>   
-                        <input type="text" name="title" placeholder='Write Something' onChange={this.handleChange}/>
+                        <input type="text" name="title" placeholder='Write Something' onChange={this.handleChange} value={this.state.title} />
                         <br />
                         <label htmlFor="body">Body</label>
-                        <textarea type="text" name="body" placeholder='Write Something' onChange={this.handleChange}/>
+                        <textarea type="text" name="body" placeholder='Write Something' onChange={this.handleChange} value={this.state.body} />
                         <br />
                         <input type="submit" value="Submit" />
 
