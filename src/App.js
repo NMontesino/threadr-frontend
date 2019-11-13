@@ -50,7 +50,16 @@ class App extends React.Component {
   
       <div className="App" style={{'width': '100%', 'height': '100vh', 'border': '1px solid black', 'padding': '16px'}}>
   
-        <Body className="app-body" isLoggedIn={this.state.isLoggedIn} posts={this.state.posts} value={this.state.value} handleAddNewPost={this.handleAddNewPost} handleAddNewThread={this.handleAddNewThread} handleLogin={this.handleLogin} handleLoginToggle={this.handleLoginToggle} user={this.state.user} currentThread={this.state.currentThread}/>
+        <Body className="app-body" 
+          isLoggedIn={this.state.isLoggedIn} 
+          posts={this.state.posts} 
+          value={this.state.value} 
+          handleAddNewPost={this.handleAddNewPost} 
+          handleAddNewThread={this.handleAddNewThread} 
+          handleLogin={this.handleLogin} 
+          handleLoginToggle={this.handleLoginToggle} 
+          user={this.state.user} 
+          currentThread={this.state.currentThread}/>
   
       </div>
   

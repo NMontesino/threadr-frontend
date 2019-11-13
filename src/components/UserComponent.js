@@ -1,13 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class UserComponent extends Component
-{
+export default function UserComponent(props){
 
-    render()
-    {
-        return(<p>render for user component</p>)
-    }
+    return(
+        <p>
+            Welcome,  
+            <span style={{'fontWeight': 'bold'}}>
+                { props.user.username }
+            </span>
+        </p>
+    )
+    
 
 }
 
-export default UserComponent

@@ -4,6 +4,7 @@ import ThreadForm from '../forms/ThreadForm'
 import LoginForm from '../forms/LoginForm'
 import Sidebar from './Sidebar'
 
+
 class Body extends Component
 {
 
@@ -11,10 +12,19 @@ class Body extends Component
     {
         return(
             this.props.isLoggedIn ?
-                <div>
-                <Sidebar className="sidebar" />
-                <ThreadForm handleAddNewThread={this.props.handleAddNewThread}/>
-                <ThreadContainer posts={this.props.posts} value={this.props.value} handleAddNewPost={this.props.handleAddNewPost} user={this.props.user} currentThread={this.props.currentThread}/>
+                <div style={{ display: 'flex', alignItems: 'flex-start' }}>
+                    
+                        <Sidebar user={this.props.user}/>
+                    
+
+                    <div>
+                    <ThreadForm handleAddNewThread={this.props.handleAddNewThread}/>
+                    <ThreadContainer posts={this.props.posts} 
+                        value={this.props.value} 
+                        handleAddNewPost={this.props.handleAddNewPost} 
+                        user={this.props.user} 
+                        currentThread={this.props.currentThread}/>
+                    </div>
                  </div>
             :
             
