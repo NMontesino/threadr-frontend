@@ -92,6 +92,7 @@ class App extends React.Component
     {
       return post.id !== postEdit.id
     })
+    console.log(newPostArr)
     this.setState(
     {
       posts: [...newPostArr, postEdit]
