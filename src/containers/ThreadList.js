@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import ThreadComponent from '../components/ThreadComponent'
 
-class ThreadList extends Component
-{
+export default class ThreadList extends Component{
 
-    render()
-    {
-        let threads = []
+    render() {
+        // let threads = []
+        let AllThreads = this.props.threads.map((thread) => {
+            return <ThreadComponent deleteThread={this.props.deleteThread} selectThread={ this.props.selectThread } thread={ thread } />
+        })
             let parsedNum = parseInt(this.props.titleSearch)
             
             let filteredthreads = this.props.threads.filter(thread => 
@@ -15,22 +16,15 @@ class ThreadList extends Component
     
             console.log(filteredthreads)
             
-            if(this.props.threads)
-            {
-                threads = filteredthreads.map((thread) => 
-                {
+            if(parsedNum > 0){
+                filteredthreads.map((thread) => {
                     return <ThreadComponent deleteThread={this.props.deleteThread} selectThread={ this.props.selectThread } thread={ thread } />
                 })
             }
-        return(
+            else {
+                return AllThreads
+            }
             
-            <div>
-                { threads }
-            </div>
-        
-        )
     }
-
 }
 
-export default ThreadList

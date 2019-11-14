@@ -1,27 +1,102 @@
 import React from 'react'
 import './App.css'
 import Body from './containers/Body'
+import { Route, Link, Switch,  } from 'react-router-dom'
+import LoginForm from './forms/LoginForm';
+import NotFound from './components/notFound'
+import Sidebar from './containers/Sidebar'
 
-class App extends React.Component {
+
+class App extends React.Component 
+{
   
-  state = {
+  state = 
+  {
     posts: [],
     threads: [],
+    currentThread: null,
     user: null,
-    isLoggedIn: false,
-    currentThread: null
+    isLoggedIn: false
+  }
+
+  componentDidMount = () =>
+  {
+
+    fetch('http://localhost:3000/channels')
+    .then(res => res.json())
+    .then((threads) =>
+    {
+      this.setState(
+      {
+        threads: threads
+      })
+    })
+
+  }
+
+  selectThread = (thread) =>
+  {
+    this.setState(
+    {
+      currentThread: thread,
+      posts: thread.posts
+    }, () => console.log(this.state.currentThread))
   }
   
-  handleAddNewPost = (newPostObj) => {
-    this.setState({
+  handleAddNewPost = (newPostObj) => 
+  {
+    this.setState(
+    {
       posts: [...this.state.posts, newPostObj]
+    })
+
+  }
+
+  handleAddNewThread = (newThreadObj) => 
+  {
+    console.log(newThreadObj)
+    this.setState(
+    {
+      threads: [...this.state.threads, newThreadObj],
+      currentThread: newThreadObj
     })
   }
 
-  handleAddNewThread = (newThreadObj) => {
-    this.setState({
-      threads: [...this.state.threads, newThreadObj],
-      currentThread: newThreadObj
+  deletePost = (postDelete) =>
+  {
+    const newPostArr = this.state.posts.filter((post) => 
+    {
+      return post !== postDelete
+    })
+    this.setState(
+    {
+      posts: newPostArr
+    })
+  }
+
+  editPost = (postEdit) =>
+  {
+    const newPostArr = this.state.posts.filter((post) => 
+    {
+      return post.id !== postEdit.id
+    })
+    console.log(newPostArr)
+    this.setState(
+    {
+      posts: [...newPostArr, postEdit]
+    })
+  }
+
+  deleteThread = (threadDelete) =>
+  {
+    const newThreadArr = this.state.threads.filter((thread) => 
+    {
+      return thread !== threadDelete
+    })
+    this.setState(
+    {
+      threads: newThreadArr,
+      currentThread: null
     })
 
   }
@@ -41,30 +116,72 @@ class App extends React.Component {
     })
 }
   
-  
-  
-  render(){
-    console.log(this.state)
+  render()
+  {
+
+    // console.log(this.state)
 
     return(
   
-      <div className="App" style={{'width': '100%', 'height': '100vh', 'border': '1px solid black', 'padding': '16px'}}>
+      <div className="App" style={{'width': '100%', 'height': '100vh', 'padding': '16px'}}>
   
-        <Body className="app-body" 
-          isLoggedIn={this.state.isLoggedIn} 
-          posts={this.state.posts} 
-          value={this.state.value} 
-          handleAddNewPost={this.handleAddNewPost} 
-          handleAddNewThread={this.handleAddNewThread} 
-          handleLogin={this.handleLogin} 
-          handleLoginToggle={this.handleLoginToggle} 
-          user={this.state.user} 
-          currentThread={this.state.currentThread}/>
+        <div>
+            <ul>
+                <li>
+                    <Link to="/">Home</Link>
+                </li>
+
+                <li>
+                    <Link to="/login">Login</Link>
+                </li>
+            </ul>
+            </div>
+
+            <Switch>
+
+            <Route exact path="/" render={ () => 
+            this.state.isLoggedIn ?
+            <>
+            <Sidebar className="sidebar" 
+              user={ this.state.user } 
+              selectThread={ this.state.selectThread } 
+              threads={ this.state.threads } 
+              deleteThread={ this.state.deleteThread } />
+              
+              <Body className="app-body" 
+                posts={this.state.posts} 
+                value={this.state.value} 
+                isLoggedIn={ this.state.isLoggedIn } 
+                handleLogin={ this.handleLogin } 
+                handleAddNewPost={this.handleAddNewPost} 
+                deletePost={this.deletePost} 
+                editPost={this.editPost} 
+                user={ this.state.user } 
+                currentThread={ this.state.currentThread } 
+                handleAddNewThread={this.handleAddNewThread} 
+                handleLoginToggle={this.handleLoginToggle} 
+                threads={this.state.threads}/> 
+                </>
+              :
+              <LoginForm handleLogin={ this.handleLogin } 
+              handleLoginToggle={this.handleLoginToggle}/>} />
+
+            <Route exact path="/login" render= {() => 
+              <LoginForm handleLogin={ this.handleLogin } 
+              handleLoginToggle={this.handleLoginToggle}/> }/>
+
+            <Route component={NotFound} />
+
+            </Switch>
+
+        
   
       </div>
   
     )
+
   }
+
 }
 
 export default App

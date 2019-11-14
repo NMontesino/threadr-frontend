@@ -7,10 +7,14 @@ class ThreadContainer extends Component
 
     render()
     {
+        const posts = this.props.posts.map((post) => 
+        {
+            return <PostComponent post={post} deletePost={this.props.deletePost} editPost={this.props.editPost} />
+        })
         return(
             <div>
-                <PostComponent post={this.props.posts}/>
-                <NewPostForm value={this.props.value} handleAddNewPost={this.props.handleAddNewPost} user={this.props.user} currentThread={this.props.currentThread}/>
+                {posts}
+                <NewPostForm value={this.props.value} handleAddNewPost={this.props.handleAddNewPost} currentThread={ this.props.currentThread } user={ this.props.user } />
             </div>
         )
     }

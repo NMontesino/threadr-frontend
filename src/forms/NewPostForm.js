@@ -1,19 +1,26 @@
 import React, { Component } from 'react'
 
-class NewPostForm extends Component{
-    state = {
+class NewPostForm extends Component
+{
+
+    state = 
+    {
         title: '',
         content: ''
     }
 
-    handleChange = (event) => {
-        console.log(this.state)
-        this.setState({
+    handleChange = (event) => 
+    {
+        // console.log(this.state)
+
+        this.setState(
+        {
             [event.target.name]: event.target.value
         })
-      }
+    }
 
-      handleSubmit = (event) => {
+    handleSubmit = (event) => 
+    {
         event.preventDefault()
 
         fetch("http://localhost:3000/posts", {
@@ -38,19 +45,23 @@ class NewPostForm extends Component{
     render(){
 
         return(
-            <form onSubmit={this.handleSubmit}>
-                <label>
-                    Title
-                    <input type="text" name="title" placeholder='Write Something' onChange={this.handleChange}/>
-                </label>
-                <label>
-                    Content
-                    <textarea type="text" name="content" placeholder='Write Something' onChange={this.handleChange}/>
-                </label>
 
+            <form onSubmit={this.handleSubmit} style={{'display': 'flex', 'flexDirection': 'column', 'width': '200px', 'height': '200px'}}>
+
+                <h2>Create Post</h2>
+
+                <label htmlFor="title">Title</label>   
+                <input type="text" name="title" placeholder='Write Something' onChange={this.handleChange}/>
+                <br />
+                <label htmlFor="content">Content</label>
+                <textarea type="text" name="content" placeholder='Write Something' onChange={this.handleChange}/>
+                <br />
                 <input type="submit" value="Submit" />
+
             </form>
+
         )
+
     }
 
 }

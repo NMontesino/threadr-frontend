@@ -1,14 +1,40 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ThreadList from './ThreadList'
 import UserComponent from '../components/UserComponent'
 import Drawer from '@material-ui/core/Drawer'
-import List from '@material-ui/core/List'
 import Divider from '@material-ui/core/Divider'
 import { makeStyles } from '@material-ui/core/styles'
+import Button from '@material-ui/core/Button'
+
+
 // import Toolbar from '@material-ui/core/Toolbar'
 
+
 export default function Sidebar(props){
-    const drawerWidth = 240
+
+    const [titleSearch, setTitleSearch] = useState(null)
+
+    const [state, setState] = React.useState({
+        top: false,
+        left: false,
+        bottom: false,
+        right: false,
+      })
+
+      const toggleDrawer = (side, open) => event => {
+        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+          return;
+        }
+    
+        setState({ ...state, [side]: open });
+      };
+   
+    
+    const drawerWidth = 200
+
+    const handleChange = (event) => {
+        setTitleSearch(event.target.value)
+    }
 
     const useStyles = makeStyles(theme => ({
         root: {
@@ -30,35 +56,40 @@ export default function Sidebar(props){
         },
       }))
 
-      const classes = useStyles()
-
-    return(
-        <Drawer
-            className={classes.drawer}
-            variant="permanent"
-            classes={{
-                paper: classes.drawerPaper,
-            }}
-            anchor="left"
+      const sideList = side => (
+        <div
+          className={classes.list}
+          role="presentation"
+          onClick={toggleDrawer(side, false)}
+          onKeyDown={toggleDrawer(side, false)}
         >
-        <div className={classes.toolbar} />
 
-            <Divider />
+        <UserComponent user={props.user}/>
 
-            <List>
-                <UserComponent user={props.user}/>
-            </List>
+          <Divider />
 
-            <Divider />
+          <input type="number" name="filter" placeholder='Choose a Number' 
+                onChange={handleChange} 
+                value= {titleSearch}/>
 
-            <List>
-                <ThreadList />  
-            </List>
+          <ThreadList deleteThread={props.deleteThread} 
+                selectThread={props.selectThread} 
+                threads={ props.threads } 
+                titleSearch={titleSearch} />  
 
+        </div>
+      )
+
+      const classes = useStyles()
+    
+    return(
+        <div>
+        <Button onClick={toggleDrawer('left', true)}>View Sidebar</Button>
+        <Drawer open={state.left} onClose={toggleDrawer('left', false)}>
+            {sideList('left')}
         </Drawer>
 
-           
+        </div>
+   
     )
 }
-
-
