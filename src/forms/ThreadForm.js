@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import ReactQuill from 'react-quill'
+import 'react-quill/dist/quill.snow.css'
+import renderHTML from 'react-render-html'
 
 class ThreadForm extends Component{
 
@@ -55,7 +58,12 @@ class ThreadForm extends Component{
                 <input type="text" name="title" placeholder='Write Something' onChange={this.handleChange}/>
             
                 <label htmlFor="description">Description</label>
-                <textarea type="text" name="description" placeholder='Write Something' onChange={this.handleChange}/>
+                <ReactQuill  
+                modules={ThreadForm.modules}
+                formats={ThreadForm.modules}
+                placeholder='Write Something' 
+                onChange={this.handleChange} 
+                value={this.state.description}/>
 
                 <input type="submit" value="Submit" />
                 
@@ -66,5 +74,11 @@ class ThreadForm extends Component{
     }
 
 }
+ThreadForm.modules = {
+    toolbar: [
+        [[{header: '1'}, {header: '2'}, {header: '3'}], {font: '1'}]
+    ]
+}
+
 
 export default ThreadForm
